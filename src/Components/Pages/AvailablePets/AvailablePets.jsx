@@ -14,10 +14,10 @@ const AvailablePets = () => {
   const [selectedPet, setSelectedPet] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  pets.forEach((i) => {
-    console.log(i)
+  // pets.forEach((i) => {
+  //   console.log(i)
     
-  } )
+  // } )
 
   useEffect(() => {
     const fetchPets = async () => {
