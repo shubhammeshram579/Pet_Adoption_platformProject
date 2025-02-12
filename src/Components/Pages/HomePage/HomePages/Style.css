@@ -1,0 +1,55 @@
+.slideshow2 {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+  }
+  
+  .slide2 {
+    position: absolute;
+    top: 0;
+    left: 100%; 
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    /* background-color:rgb(222, 215, 215); */
+    color: #021a1e25;
+  }
+  
+  .slide2.active2 {
+    left: 0;
+    opacity: 1;
+    z-index: 10;
+  }
+  
+
+  #ReviewCard::-webkit-scrollbar{
+    display: none;
+  }
+
+
+
+  #homeImage{
+    border-radius:20px;
+    object-fit:cover;
+    margin-left:20px;
+  }
+
+  #homeImage:hover{
+    border-radius: 100px 10px 100px 10px;
+    transition: linear 0.5s;
+    transform: scale(0.5s);
+  }
+
+
+  #NavItems{
+    color:#fff;
+    font-size:1vw;
+    text-decoration: none;
+    text-transform: capitalize;
+  }
+
+  #NavItems:hover{
+    color: #1ab3ca;
+  }

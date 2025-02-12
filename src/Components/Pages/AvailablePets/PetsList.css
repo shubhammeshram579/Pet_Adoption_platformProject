@@ -1,0 +1,128 @@
+
+.pets-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .pets-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .pet-card {
+    position: relative;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .pet-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .pet-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+ 
+  .fav-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    background: white;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+ 
+  .heart-icon {
+    font-size: 24px;
+    color: black;
+    transition: color 0.3s ease;
+  }
+  
+  
+  .heart-icon.filled {
+    color: red;
+  }
+  
+  .fav-icon:hover .heart-icon {
+    color: crimson;
+  }
+  
+  .adopt-btn {
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .adopt-btn:hover {
+    background-color: #e74c3c;
+  }
+  
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .adoption-form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: left;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .adoption-form input, .adoption-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+  }
+  
+  .submit-btn {
+    background: green;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .submit-btn:hover {
+    background: darkgreen;
+  }
+  
+  .close-btn {
+    background: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  
