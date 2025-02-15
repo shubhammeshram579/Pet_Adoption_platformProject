@@ -43,7 +43,7 @@ const ContactUs = () => {
       {/* Shelter Contact Details */}
       <div style={{display:"flex", flexDirection:"row-reverse",alignItems:"start" ,justifyContent:"space-evenly" ,gap:"200px"}}>
       <div className="contact-details">
-        <h2 style={{paddingBottom:"20px"}}>Shelter Contact Information</h2>
+        <h2 style={{paddingBottom:"20px", color:"#111",paddingTop:"20px"}}>Shelter Contact Information</h2>
         <p><strong>Shelter Name:</strong> Example Shelter</p>
         <p><strong>Phone:</strong> +1 (123) 456-7890</p>
         <p><strong>Email:</strong> info@exampleshelter.org</p>
@@ -56,7 +56,7 @@ const ContactUs = () => {
 
       {/* Contact Form */}
       <div className="contact-form">
-        <h2>Send Us a Message</h2>
+        <h2 style={{ color:"#111",paddingTop:"20px"}}>Send Us a Message</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Your Name</label>
           <input 
@@ -66,6 +66,7 @@ const ContactUs = () => {
             value={formData.name}
             onChange={handleChange}
             required 
+            placeholder='enter your name'
           />
 
           <label htmlFor="email">Your Email</label>
@@ -76,6 +77,7 @@ const ContactUs = () => {
             value={formData.email}
             onChange={handleChange}
             required 
+            placeholder='enter your email'
           />
 
           <label htmlFor="subject">Subject</label>
@@ -86,6 +88,7 @@ const ContactUs = () => {
             value={formData.subject}
             onChange={handleChange}
             required 
+            placeholder='enter your subject'
           />
 
           <label htmlFor="message">Your Message</label>
@@ -96,9 +99,10 @@ const ContactUs = () => {
             value={formData.message}
             onChange={handleChange}
             required 
+            placeholder='enter your message'
           ></textarea>
 
-          <button type="submit">Submit</button>
+          <button type="submit" className='bg-info'>Submit</button>
         </form>
         {responseMessage && <p className="response-message">{responseMessage}</p>}
       </div>

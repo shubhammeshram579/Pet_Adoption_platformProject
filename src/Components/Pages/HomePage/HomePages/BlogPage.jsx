@@ -3,7 +3,7 @@ import React from "react";
 const BlogPage = () => {
   return (
     <div style={{padding:"50px 20px"}}>
-        <h3 className="text-light">Blogs</h3>
+        <h3 className="text-dark">Blogs</h3>
       <div className="row row-cols-1 row-cols-md-5">
         <div className="col mb-4">
           <div className="card" style={{height:"50vh" ,overflow:"hidden"}}>

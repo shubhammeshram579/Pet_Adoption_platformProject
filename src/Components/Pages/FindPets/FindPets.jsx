@@ -1,6 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useContext } from "react";
 import axios from "axios";
 import "../AvailablePets/PetsList.css";
+// import DataContex from "..//../ContextApi/DataContext.js"
+import {useDispatch} from "react-redux"
+import {addShelters} from "..//..//../ReduxSrore/AuthSlice.js"
+import {addfavorites} from "..//..//../ReduxSrore/AuthSlice.js"
+import { useNavigate } from "react-router-dom";
+
 
 const DOG_API_URL = "https://api.thedogapi.com/v1/breeds";
 const DOG_API_KEY = "live_BE0zxldUzMdCAhMiqo5SRwU9r2yAJrjzEj4W9NtCUft4cIoy3Yn3p5gJFlCdq2so";
@@ -9,24 +15,25 @@ const CAT_API_URL = "https://api.thecatapi.com/v1/breeds";
 const CAT_API_KEY = "live_n4wDXppPC4L8RUH4t8m1l7LiJ6DInRa2BWMwIC1duiONZomD6Ev7XeLvNBLnK6HH";
 
 const FindPets = () => {
-
-
-   
-
+// const {petsData} = useContext(DataContex)
+  const dispatch  = useDispatch();
+  const navigate = useNavigate()
     
   const [pets, setPets] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [selectedPet, setSelectedPet] = useState(null);
+  const [formData,setFormData] = useState({})
+  const [data,setData] = useState([])
   const [loading, setLoading] = useState(true);
 
 
   const [product,setProducts] = useState([])
-  const [query, setQuery] = useState('');    
-//   const [selectType, setSelectType] = useState('');
-  const [state ,setState] = useState("")
+  const [query, setQuery] = useState('');
+  const [state ,setState] = useState("");
 
 
-console.log(pets)
+// console.log(pets)
+
 
   useEffect(() => {
     const fetchPets = async () => {
@@ -45,10 +52,7 @@ console.log(pets)
     fetchPets();
   }, []);
 
-  useEffect(() => {
-    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    setFavorites(storedFavorites);
-  }, []);
+
 
   const toggleFavorite = (pet) => {
     let updatedFavorites;
@@ -59,21 +63,37 @@ console.log(pets)
     }
 
     setFavorites(updatedFavorites);
-    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+    // dispatch(addfavorites(updatedFavorites))
   };
 
 
+  // form handel
+    const handelChange = (e) => {
+      const {name ,value} = e.target;
+      setFormData((values) => ({...values, [name]:value}))
+  
+    }
+  
+    const HandelSumbit2 = (e) => {
+      e.preventDefault();
+      const obj = {info:formData,data:selectedPet}
+      setData((values) => ({...values,obj}))
+      setFormData({fullname:"",email:"",phone:"",message:""})
+      dispatch(addShelters(obj))
+      navigate(`/AdoptionPayment/${selectedPet.id}`)
+     
+    }
 
 
+// country selection
 const LocatinSt = []
 pets.forEach((p) => {
   LocatinSt.push(p.origin)
 })
 const uniStar = [...new Set(LocatinSt)]
 
-console.log(uniStar)
-
   
+// filter handelSumbit feature
 const HandelSumbit = (e) => {
     e.preventDefault()
     const FatchQury = async () => {
@@ -92,24 +112,19 @@ const HandelSumbit = (e) => {
   
   };
   
-  
+  // filter clean btn
   const ClearnSerach = () => {
-    // setSelectType("")
     setQuery("")
     setState("")
   }
 
   return (
     <div>
+      {/* filter form */}
     <form  onSubmit={HandelSumbit} style={{backgroundColor:"#dddd",height:"50vh" ,textAlign:"center" ,paddingTop:"140px"}}>
       <h1 style={{color:"#111"}}>Find your pets</h1>
         <div style={{padding:"30px"}}>
         <input style={{padding:"10px", marginRight:"10px" ,width:"20vw"}} type="text" name="name" value={query} placeholder='Search by name,country_code' onChange={(e) => setQuery(e.target.value)} />
-        {/* <select  style={{padding:"10px 20px" ,marginLeft:"0px"}} name="type" value={selectType} onChange={(e) => setSelectType(e.target.value)}>
-          <option value="">Select Pets</option>
-          <option value="Cat">Cat</option>
-          <option value="Dog">Dog</option>
-        </select> */}
 
         <select style={{padding:"10px 10px" ,marginLeft:"10px"}} name="State" value={state} onChange={(e) => setState(e.target.value)}>
           <option value="">Select country</option>
@@ -125,10 +140,10 @@ const HandelSumbit = (e) => {
         <button style={{width:"200px",padding:"11px 30px" ,backgroundColor:"#1ab3ca" ,border:"none" , borderRadius:"5px" ,marginLeft:"10px"}} onClick={ClearnSerach}>Clear Filter</button>
     
       </form>
-    <div className="pets-container" style={{paddingTop:"100px"}}>
-      
-      
 
+
+      {/* petslist */}
+    <div className="pets-container" style={{paddingTop:"100px"}}>
       <h2 className="title">Available Pets</h2>
       {loading ? (
         <p className="loading">Loading...</p>
@@ -142,11 +157,11 @@ const HandelSumbit = (e) => {
                     {favorites.some((fav) => fav.id === pet.id) ? (
                       <span className="heart-icon filled">❤️</span> 
                     ) : (
-                      <span className="heart-icon">🖤</span> 
+                      <button style={{backgroundColor:"transparent",border:"none"}} onClick={() =>  dispatch(addfavorites(pet))}  className="heart-icon">🖤</button>
                     )}
                   </div>
     
-                  <img src={pet.image?.url} alt={pet.name} className="pet-image" />
+                  <img src={pet.image?.url} alt={pet.name} className="pet-image" style={{height:"350px",objectFit:"cover"}} />
                   <h3 className="pet-name">{pet.name}</h3>
                   <p><strong>Breed Group:</strong> {pet.breed_group || "N/A"}</p>
                   <p><strong>Weight:</strong> {pet.weight?.metric || "Unknown"} kg</p>
@@ -156,18 +171,18 @@ const HandelSumbit = (e) => {
                 </div>
               ))
           ) : (
-          pets.map((pet) => (
+            pets.map((pet) => (
             <div key={pet.id} className="pet-card">
               {/* Favorite Heart Icon */}
               <div className="fav-icon" onClick={() => toggleFavorite(pet)}>
                 {favorites.some((fav) => fav.id === pet.id) ? (
                   <span className="heart-icon filled">❤️</span> 
                 ) : (
-                  <span className="heart-icon">🖤</span> 
+                 <button style={{backgroundColor:"transparent",border:"none"}} onClick={() =>  dispatch(addfavorites(pet))}  className="heart-icon">🖤</button>
                 )}
               </div>
 
-              <img src={pet.image?.url} alt={pet.name} className="pet-image" />
+              <img src={pet.image?.url} alt={pet.name} className="pet-image"  style={{height:"350px",objectFit:"cover"}}/>
               <h3 className="pet-name">{pet.name}</h3>
               <p><strong>Breed Group:</strong> {pet.breed_group || "N/A"}</p>
               <p><strong>Weight:</strong> {pet.weight?.metric || "Unknown"} kg</p>
@@ -181,24 +196,27 @@ const HandelSumbit = (e) => {
 
       {/* Adoption Form Modal */}
       {selectedPet && (
-        <div className="overlay">
-          <div className="adoption-form">
-            <h2>Adopt {selectedPet.name}</h2>
-            <form>
+        <div className="overlay" >
+          <div className="adoption-form" style={{backgroundColor:"#ddd", marginTop:"100px",width:"25%"}}>
+            <h3>Adopt {selectedPet.name}</h3>
+            <form  onSubmit={HandelSumbit2}>
               <label>Full Name:</label>
-              <input type="text" placeholder="Enter your name" required />
+              <input type="text" name="fullname" value={formData.fullname} onChange={handelChange} placeholder="Enter your name" required />
 
               <label>Email:</label>
-              <input type="email" placeholder="Enter your email" required />
+              <input type="email"  name="email" value={formData.email} onChange={handelChange} placeholder="Enter your email" required />
 
               <label>Phone:</label>
-              <input type="tel" placeholder="Enter your phone number" required />
+              <input type="number"  name="phone" value={formData.phone} onChange={handelChange} placeholder="Enter your phone number" required />
+
+              <label>Address:</label>
+              <input type="text"  name="address" value={formData.address} onChange={handelChange} placeholder="Enter your adderes" required />
 
               <label>Why do you want to adopt {selectedPet.name}?</label>
-              <textarea placeholder="Write a short reason..." required></textarea><br></br>
+              <textarea name="message" value={formData.message} onChange={handelChange} placeholder="Write a short reason..." required></textarea><br></br>
 
-              <button type="submit" className="submit-btn">Submit Application</button><br></br><br></br>
-              <button type="button" className="close-btn" onClick={() => setSelectedPet(null)}>Close</button>
+              <button type="submit" className="submit-btn w-100">Submit Application</button><br></br><br></br>
+              <button type="button" className="close-btn w-100" onClick={() => setSelectedPet(null)}>Close</button>
             </form>
           </div>
         </div>

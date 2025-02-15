@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./Style.css";
+import "..//..//..//../App.css";
+
+import { motion } from "motion/react"
 
 const ReviewAdop = () => {
   const [review, setReview] = useState([]);
@@ -105,7 +107,7 @@ const ReviewAdop = () => {
   return (
     <div style={{minHeight:"60vh", padding:"100px 100px"}}>
       <h1 style={{textAlign:"center" ,padding:"20px"}}>Reviews from Our Happy Pet Parents</h1>
-      <div id="ReviewCard" style={{display:"flex" , flexWrap:"nowrap" ,alignItems:"center" ,justifyContent:"space-evenly" , flexDirection:"row",overflow:"scroll" ,gap:"40px"}}>
+      <motion.div whileHover={{ scale: 0.95 }} whileTap={{ scale: 0.95 }} onHoverStart={() => console.log('hover started!')}  id="ReviewCard" style={{display:"flex" , flexWrap:"nowrap" ,alignItems:"center" ,justifyContent:"space-evenly" , flexDirection:"row",overflow:"scroll" ,gap:"40px"}}>
         {review.map((p, index) => (
           <div>
             <div className="bg-light" key={p.id} style={{display:"flex" , flexWrap:"nowrap" ,alignItems:"start" ,gap:"20px",width:"40vw" ,justifyContent:"space-evenly"}}>
@@ -127,7 +129,7 @@ const ReviewAdop = () => {
             </div>
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

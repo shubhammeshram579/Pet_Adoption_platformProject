@@ -39,9 +39,9 @@ const AdoptionProcess = () => {
   return (
     <>
   
-      <div style={{padding:"100px 20px"}}>
+      <div style={{padding:"100px 20px", minHeight:"90vh"}}>
       <Container className="mt-5 p-4 bg-light rounded shadow">
-        <h2 className="text-center text-primary mb-4">🐾 Pet Adoption Process</h2>
+        <h2 className="text-center text-dark mb-4">🐾 Pet Adoption Process</h2>
         <Row className="justify-content-center">
           {steps.map((step) => (
             <Col md={4} sm={6} xs={12} key={step.id} className="mb-4">

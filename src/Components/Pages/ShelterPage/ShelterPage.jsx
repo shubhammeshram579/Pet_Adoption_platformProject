@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 
 const ShelterPage = () => {
     const [shelters ,setShelters] = useState([])
+
+    const currentSherer = useSelector((state) => state.auth.SheltersCard)
+    const currentSherer2 = useSelector((state) => state.auth.SheltersCard2)
 
     const ShelterList = [
         {
@@ -136,7 +140,7 @@ const ShelterPage = () => {
         
       },[])
 
-    //   console.log(shelters)
+
 
   return (
     <div style={{paddingTop:"10px"}}>
@@ -145,10 +149,41 @@ const ShelterPage = () => {
           </div>
           <h1 style={{textAlign:"center" ,backgroundColor:"#fff" ,width:"80vw" ,marginLeft:"189px" ,color:"rebeccapurple"}}>Partner Shelters</h1>
     
+      <div style={{ padding:"30px 0px",display:"flex", alignItems:"center", justifyContent:"space-evenly" ,flexWrap:"wrap"}}>
+      
+      {currentSherer.map((shel) => (
+        <div key={shel.id} className='bg-light d-flex align-items-start justify-content-between' style={{height:"32vh",width:"500px" ,padding:"20px" ,margin:"10px" ,gap:"20px" ,borderRadius:"10px"}}>
+            <div>
+                <img height={150} width={150} style={{borderRadius:"100%",objectFit:"cover"}} src={shel.data.image.url} alt={shel.name} />
+            </div>
+            <div>
+            <h3>{shel.info.fullname}</h3>
+            <p>{shel.info.address}</p>
+            <p>{shel.info.phone}</p>
+            <p>{shel.info.message}</p>
+            </div>
+        </div>
+      ))}
+
+      {currentSherer2.map((shel2,index) => (
+        <div key={index} className='bg-light d-flex align-items-start justify-content-between' style={{height:"32vh",width:"500px" ,padding:"20px" ,margin:"10px" ,gap:"20px" ,borderRadius:"10px"}}>
+            <div>
+                <img height={150} width={150} style={{borderRadius:"100%",objectFit:"cover"}} src={shel2.image?.url} alt={shel2.name} />
+            </div>
+            <div>
+            <h3>{shel2.name}</h3>
+            <p>mumbai</p>
+            <p>7278724248</p>
+            <p>{shel2.description}</p>
+            </div>
+        </div>
+      ))}
+    </div>
+
     <div style={{ padding:"30px 0px",display:"flex", alignItems:"center", justifyContent:"space-evenly" ,flexWrap:"wrap"}}>
       
-      {shelters.map((shel) => (
-        <div key={shel.id} className='bg-light d-flex align-items-start justify-content-between' style={{height:"32vh",width:"500px" ,padding:"20px" ,margin:"10px" ,gap:"20px" ,borderRadius:"10px"}}>
+      {shelters.map((shel,index) => (
+        <div key={index} className='bg-light d-flex align-items-start justify-content-between' style={{height:"32vh",width:"500px" ,padding:"20px" ,margin:"10px" ,gap:"20px" ,borderRadius:"10px"}}>
             <div>
                 <img height={150} width={150} style={{borderRadius:"100%",objectFit:"cover"}} src={shel.image} alt={shel.name} />
             </div>
