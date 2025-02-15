@@ -61,7 +61,7 @@
   #homeImage2:hover{
     /* border-radius:50%; */
     transition: linear 0.5s;
-    transform: scale(1.2);
+    transform: scale(1.1);
   }
 
 

@@ -135,10 +135,10 @@ const HandelSumbit = (e) => {
             ))}
         </select>
         </div>
-       
-        <button style={{width:"200px" ,paddingBottom:"36px" ,backgroundColor:"#1ab3ca" ,border:"none" , borderRadius:"5px",textAlign:"center"}} type='submit'>Search</button>
+       <div style={{display:"flex",alignItems:"center",justifyContent:"center",marginTop:"20px"}}>
+        <button style={{width:"200px",padding:"11px 30px"  ,backgroundColor:"#1ab3ca" ,border:"none" , borderRadius:"5px",textAlign:"center"}} type='submit'>Search</button>
         <button style={{width:"200px",padding:"11px 30px" ,backgroundColor:"#1ab3ca" ,border:"none" , borderRadius:"5px" ,marginLeft:"10px"}} onClick={ClearnSerach}>Clear Filter</button>
-    
+        </div>
       </form>
 
 
