@@ -46,7 +46,7 @@ const FavoritePets = () => {
             <div key={index} className="pet-card">
               <img style={{objectFit:"cover" ,height:"400px"}} src={pet.image?.url} alt={pet.name} className="pet-image" />
               <h3 className="pet-name">{pet.name}</h3>
-              <button className="fav-btn remove-btn bg-info" onClick={() => HandelClick(pet.id)}>
+              <button className="fav-btn remove-btn bg-info rounded" style={{padding:"10px 50px",border:"none"}} onClick={() => HandelClick(pet.id)}>
                 ❌ Remove
               </button>
             </div>
@@ -55,7 +55,7 @@ const FavoritePets = () => {
             <div key={index} className="pet-card">
               <img style={{objectFit:"cover" ,height:"400px"}} src={pet.image?.url} alt={pet.name} className="pet-image" />
               <h3 className="pet-name">{pet.name}</h3>
-              <button className="fav-btn remove-btn bg-info" onClick={() => HandelClick2(pet.id)}>
+              <button className="fav-btn remove-btn bg-info rounded" style={{padding:"10px 50px",border:"none"}} onClick={() => HandelClick2(pet.id)}>
                 ❌ Remove
               </button>
             </div>
