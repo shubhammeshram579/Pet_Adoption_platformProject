@@ -87,7 +87,7 @@ const UserRegister = () => {
         <button type="submit" className="btn btn-info w-100">
           Register
         </button>
-        <h5 className="pt-5 text-center">if you exited user then <span><Link className="text-info" to="/Login">Login</Link></span></h5>
+        <h5 className="pt-5 text-center">if you excited user then <span><Link className="text-info" to="/Login">Login</Link></span></h5>
       </form>
     </div>
     </div>

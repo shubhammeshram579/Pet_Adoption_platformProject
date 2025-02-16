@@ -84,7 +84,7 @@ const UserLogin = () => {
           Login
         </button>
         {/* <h5 className="pt-5 text-center"> <span><Link className="pt-5 text-center text-info" to="/AdminLogin">Admin Login</Link></span></h5> */}
-        <h5 className="pt-5 text-center">if user is not exit <span><Link className="text-danger" to="/Register">Register</Link> first</span></h5>
+        <h5 className="pt-5 text-center">Don't have an account  <span><Link className="text-danger" to="/Register">Register</Link> first</span></h5>
         
       </form>
       </div>

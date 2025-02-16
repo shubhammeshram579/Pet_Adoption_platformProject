@@ -8,6 +8,8 @@ import UserLogut from "../User/UserLogut.jsx"
 const Header = () => {
   const authStatus = useSelector((state) => state.auth.isLoggedIn);
   // const user = useSelector((state) => state.auth.user);
+
+
   return (
     <>
     <div
@@ -74,8 +76,8 @@ const Header = () => {
               style={{ fontSize: "20px" }}
               to="/FavoritePets"
             >
-              {/* <i id="navItemss" className="fa-solid fa-cart-plus text-info"></i> */}
-             <p style={{backgroundColor:"#1993a6",border:"1px solid #ddd", borderRadius:"0px 20px 0px 10px",padding:"2px 12px",fontWeight:"600",fontSize:"20px",marginTop:"15px",color:"#111"}}>s</p>
+             {/* {authStatus ? (<i id="navItemss" className="fa-solid fa-cart-plus text-info"></i>):(<h1>{user}</h1>)}  */}
+             <p style={{backgroundColor:"#1993a6",border:"1px solid #ddd", borderRadius:"0px 20px 0px 10px",padding:"2px 12px",fontWeight:"600",fontSize:"20px",marginTop:"15px",color:"#111"}}><i class="fa-solid fa-user"></i></p>
             </Link>
 
             <div className="nav-item dropdown">

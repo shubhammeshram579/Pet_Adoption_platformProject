@@ -73,20 +73,20 @@ const handelClick = () => {
     <div style={{display:"flex" ,alignItems:"start",justifyContent:"space-between",padding:"5px 100px",backgroundColor:"#ddd"}}>
       <div className="page1 p-5"  style={{width:"50%"}}>
         <div>
-            <h1>Customers</h1>
+            <h1>SHELTER PARENT</h1>
             <p>{currentuser ? (currentuser.email) : ("login first")}</p>
         </div>
         <div >
-            <h1 style={{padding:"10px 0px"}}>Shipping Address</h1>
+            <h1 style={{padding:"10px 0px"}}>SHELTER ADDRESS</h1>
             <form style={{display:"flex" ,alignItems:"center",justifyContent:"space-between", width:"80%", flexWrap:"wrap" ,gap:"29px" ,paddingTop:"20px"}} action="">
                 <label htmlFor="#">
                     Address <input type="text" name='address' value={"wakad"} placeholder='enter address'/>
                 </label>
                 <label htmlFor="#">
-                    city <input type="text" name='city' value={"pune"} placeholder='enter city' />
+                    City <input type="text" name='city' value={"pune"} placeholder='enter city' />
                 </label>
                 <label htmlFor="#">
-                    state  <input type="text" name='state' value={"Maharashtra"} placeholder='Maharashtra' />
+                    State  <input type="text" name='state' value={"Maharashtra"} placeholder='Maharashtra' />
                 </label>
                 <label htmlFor="#">
                     Pincode <input type="number" name='pincode' value={"441511"} placeholder='441601' />
@@ -100,7 +100,7 @@ const handelClick = () => {
       {product.map((product) => (
       <div key={product.id} className="page2" style={{width:"50%" ,padding:"48px 100px" ,backgroundColor:"#dddd"}}>
         <div style={{display:"flex", alignItems:"center",justifyContent:"space-between", borderBottom:"1px solid #fff"}}>
-            <h1>ORDER SUMMARY </h1>
+            <h1>PET </h1>
             <h5>edit card</h5>
         </div>
         
@@ -131,7 +131,7 @@ const handelClick = () => {
     {product2.map((product,index) => (
       <div key={product.id} className="page2" style={{width:"50%" ,padding:"48px 100px" ,backgroundColor:"#dddd"}}>
         <div style={{display:"flex", alignItems:"center",justifyContent:"space-between", borderBottom:"1px solid #fff"}}>
-            <h1>ORDER SUMMARY </h1>
+            <h1>PET</h1>
             <h5>edit card</h5>
         </div>
         
@@ -140,16 +140,16 @@ const handelClick = () => {
            <img height={150} width={200} style={{borderRadius:"10px",objectFit:"cover"}} src={product.image?.url} alt="" />
            <p>{product.name}</p>
            </div>
-            <p>₹00.0</p>
+            <p>₹2400.0</p>
         </div>
        
         <div style={{display:"flex", alignItems:"center",justifyContent:"space-between" ,borderBottom:"1px solid #fff", padding:"10px"}}>
-            <h5>Tax Included in Total:GST 18%</h5>
-            <p>₹00.0</p>
+            <h5>Tax Included in Total:GST 10%</h5>
+            <p>₹240.0</p>
         </div>
         <div style={{display:"flex", alignItems:"center",justifyContent:"space-between"}}>
             <h4>Total Payment</h4>
-            <p>₹00.00</p>
+            <p>₹2640.00</p>
         </div>
         
       </div>

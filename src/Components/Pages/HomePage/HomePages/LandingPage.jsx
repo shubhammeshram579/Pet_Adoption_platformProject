@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import img from "..//..//..//../assets/Images/petsDon.png"
 import Logo from "..//..//..//..//../src/Components/Pages/HomePage/HomePages/Logo/Logo.jsx"
 
-import { motion } from "motion/react"
+import { motion ,useScroll, useTransform} from "motion/react"
 
 const LandingPage = () => {
+  const { scrollYProgress } = useScroll(); 
   const [currentIndex, setCurrentIndex] = useState(0);
+
+
   const slides = [
     "https://img.freepik.com/free-photo/adorable-looking-kitten-with-dog_23-2150886504.jpg?t=st=1738612782~exp=1738616382~hmac=3002b5530beda3e66d5d323676b1b38293492135a83ecde8ca7601e6101a6cbb&w=996",
     "https://img.freepik.com/free-photo/view-cats-dogs-showing-friendship_23-2151806303.jpg?t=st=1738612873~exp=1738616473~hmac=35214cf7a655a0cd7dd57222cac978e25ed8ccc754ed1db173d050f3676bb9bd&w=1060",
@@ -15,7 +18,8 @@ const LandingPage = () => {
     "https://img.freepik.com/free-photo/full-shot-girl-with-dog-outdoors_23-2151061850.jpg?t=st=1738140575~exp=1738144175~hmac=abc442247dfd5738e6d8204056b176f8f454a673edb82f479219804a487a2971&w=996"
   
   ];
-
+  const opacity = useTransform(scrollYProgress, [0, 0.1], [0.5, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.2], [0.7, 1]);
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
@@ -52,7 +56,7 @@ const LandingPage = () => {
         <span style={{fontSize:"1vw"}}>Browse pets from our network of over 14,500 shelters and rescues.</span>
         <Link style={{textDecoration:"none"}} to="/FindaPet"><div style={{padding:"20px 0px" ,display:"flex" ,alignItems:"center" ,justifyContent:"center"}}>
         <input style={{width:"20vw" ,borderRadius:"5px 0px 0px 5px",backgroundColor:"#fff",border:"none" ,fontWeight:"300" ,padding:"4px" }} type="search" placeholder="Find your pets" />
-        <i style={{backgroundColor:"gray" ,padding:"9px 10px" ,borderRadius:"0px 10px 10px 0px",color:"#fff",marginBottom:"14px"}} className="fa-solid fa-magnifying-glass"></i>
+        <i style={{backgroundColor:"gray" ,padding:"9px 10px" ,borderRadius:"0px 10px 10px 0px",color:"#fff",marginBottom:"1px"}} className="fa-solid fa-magnifying-glass"></i>
         </div></Link>
       </h1>
 
@@ -80,7 +84,7 @@ const LandingPage = () => {
 
       {/*page2  Your Pet Adoption Journey */}
       <div>
-        <div className="page1" style={{minHeight:"100vh" ,backgroundColor:"#dddd"}}>
+        <motion.div style={{ opacity ,scale,minHeight:"100vh"}} className="page1">
           <h1 style={{paddingTop:"100px" ,color:"#111", display:"flex", alignItems:"center" ,justifyContent:"center" ,marginLeft:"400px"}}>Your Pet Adoption Journey With <span><Logo /></span> </h1>
           <div className="d-flex align-items-start justify-content-around pt-5">
           <div className="card1">
@@ -105,13 +109,13 @@ const LandingPage = () => {
             </div>
           </div>
           </div>
-        </div>
+        </motion.div>
 
       {/* page 3 the organization goals */}
       <div style={{width:"100%" ,height:"110vh" , display:"flex" ,alignItems:"center" ,justifyContent:"center"}}>
         <div style={{display:"flex" ,alignItems:"center" ,flexDirection:"column" ,justifyContent:"space-evenly"}}>
-          <h1 style={{textTransform:"capitalize" ,textAlign:"center" ,fontSize:"3vw",paddingBottom:"20px"}}>the organization goals </h1>
-          <p style={{textAlign:"center" ,fontSize:"1.2vw",width:"70%"}}> We are a passionate group of animal lovers dedicated to giving pets a
+          <h1 style={{textTransform:"capitalize" ,textAlign:"center" ,fontSize:"3vw",paddingBottom:"20px"}} className="text-dark">the organization goals </h1>
+          <p style={{textAlign:"justify" ,fontSize:"1.2vw",width:"70%"}}> We are a passionate group of animal lovers dedicated to giving pets a
           second chance. Our mission is to connect loving homes with pets in
           need of adoption. With years of experience in animal rescue, we ensure
           that each pet receives the best care, love, and attention during their

@@ -7,13 +7,9 @@ import {removeCard} from "..//..//../ReduxSrore/AuthSlice.js"
 const FavoritePets = () => {
     const dispatch = useDispatch()
     const user = useSelector((state) => state.auth.user);
-    const addfavorites = useSelector((state) => state.auth.cards);
     const favorites = useSelector((state) => state.auth.favorites);
+    const addfavorites = useSelector((state) => state.auth.cards);
 
-
-    useCallback(() => {
-      console.log("hello")
-    },[addfavorites,favorites])
 
 
     const HandelClick = (id)  => {
@@ -38,24 +34,25 @@ const FavoritePets = () => {
       
       <h2 className="title pb-5">Your Favorite Pets</h2>
 
-      {addfavorites.length === 0 ? (
+      {favorites.length === 0 ? (
         <p className="loading">No favorites yet. Click ❤️ to add pets.</p>
       ) : (
         <div className="pets-grid">
-          {addfavorites.map((pet,index) => (
-            <div key={index} className="pet-card">
-              <img style={{objectFit:"cover" ,height:"400px"}} src={pet.image?.url} alt={pet.name} className="pet-image" />
-              <h3 className="pet-name">{pet.name}</h3>
-              <button className="fav-btn remove-btn bg-info rounded" style={{padding:"10px 50px",border:"none"}} onClick={() => HandelClick(pet.id)}>
-                ❌ Remove
-              </button>
-            </div>
-          ))}
           {favorites.map((pet,index) => (
             <div key={index} className="pet-card">
               <img style={{objectFit:"cover" ,height:"400px"}} src={pet.image?.url} alt={pet.name} className="pet-image" />
               <h3 className="pet-name">{pet.name}</h3>
               <button className="fav-btn remove-btn bg-info rounded" style={{padding:"10px 50px",border:"none"}} onClick={() => HandelClick2(pet.id)}>
+                ❌ Remove
+              </button>
+            </div>
+          ))}
+
+          {addfavorites.map((pets,index) => (
+            <div key={pets.id} className="pet-card">
+              <img style={{objectFit:"cover" ,height:"400px"}} src={pets.image?.url} alt={pets.name} className="pet-image" />
+              <h3 className="pet-name">{pets.name}</h3>
+              <button className="fav-btn remove-btn bg-info rounded" style={{padding:"10px 50px",border:"none"}} onClick={() => HandelClick(pets.id)}>
                 ❌ Remove
               </button>
             </div>
